@@ -1,0 +1,7 @@
+# JetBrains
+/.idea/
+
+# PHP, Symfony, Composer
+/vendor/
+/var/cache/
+/var/log/
