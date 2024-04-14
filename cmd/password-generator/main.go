@@ -1,9 +1,10 @@
 package main
 
 import (
+	"crypto/rand"
 	"flag"
 	"fmt"
-	"math/rand"
+	"math/big"
 	"strings"
 )
 
@@ -95,7 +96,11 @@ func generatePassword() string {
 
 	password := make([]byte, length)
 	for i := 0; i < length; i++ {
-		password[i] = passwordChars[rand.Intn(len(passwordChars))]
+		idx, err := rand.Int(rand.Reader, big.NewInt(int64(len(passwordChars))))
+		if err != nil {
+			panic(err)
+		}
+		password[i] = passwordChars[idx.Int64()]
 	}
 	return string(password)
 }
